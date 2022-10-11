@@ -1,0 +1,24 @@
+<div>
+    <form [formGroup]="formLogin"  (submit)="onSubmit()">
+        <label >Name: </label>
+        <label *ngIf="(formLogin.get('name')?.hasError('minlength')) ">El tamaño minimo es 4</label>
+        <label *ngIf="(formLogin.get('name')?.hasError('maxlength')) ">El tamaño maximo es 10</label>
+        <input type="text" id="name" name="name" placeholder="Nombre" formControlName="name">
+        <br>
+
+        <label for>Email: </label>
+        <label *ngIf="formLogin.get('email')?.errors && formLogin.get('email')?.touched">Campo requerido</label>
+        <input type="text" id="email" name="email" placeholder="email" formControlName="email">
+        <br>
+
+        <label for>Password {{formLogin.get('numberPhone')?.errors | json}}</label>
+        <input type="password" id="password" name="password" placeholder="password" formControlName="password">
+        <br>
+
+        <label for>Numero de telefono {{formLogin.get('numberPhone')?.errors | json}}</label>
+        <input type="text" id="numberPhone" name="password" placeholder="telefono" formControlName="numberPhone">
+        <br>
+
+        <button type="submit" [disabled]="formLogin.invalid && formLogin.dirty">Save</button>
+    </form>
+</div>
